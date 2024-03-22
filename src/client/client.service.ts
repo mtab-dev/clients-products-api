@@ -10,8 +10,12 @@ export class ClientService {
 
   constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>) {}
   create(createClientDto: CreateClientDto) {
-    const client = new this.clientModel(createClientDto);
-    return client.save()
+    try{
+      const client = new this.clientModel(createClientDto);
+      return client.save()
+    }catch(err){
+      return err;
+    }
   }
 
   findAll() {

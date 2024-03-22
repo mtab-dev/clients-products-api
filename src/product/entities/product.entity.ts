@@ -5,15 +5,14 @@ export type ProductDocument = HydratedDocument<Product>;
 
 @Schema()
 export class Product {
-    @Prop()
+    @Prop({required: false})
     clientId: string;
         
     @Prop()
     overview: string;
 
-    @Prop({default: new Date()})
+    @Prop({default: now(), required: false})
     createdAt: Date;
-
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
