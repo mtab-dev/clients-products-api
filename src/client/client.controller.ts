@@ -17,17 +17,17 @@ export class ClientController {
     return this.clientService.findAll();
   }
 
-  @Get('listone:id')
+  @Get('list/:id')
   findOne(@Param('id') id: string) {
     return this.clientService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientService.update(+id, updateClientDto);
+    return this.clientService.update(id, updateClientDto);
   }
 
-  @Delete('remove:id')
+  @Delete('remove/:id')
   remove(@Param('id') id: string) {
     return this.clientService.remove(id);
   }

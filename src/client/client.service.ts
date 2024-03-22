@@ -22,7 +22,7 @@ export class ClientService {
     return this.clientModel.find(email)
   }
 
-  update(id: number, updateClientDto: UpdateClientDto) {
+  update(id: string, updateClientDto: UpdateClientDto) {
     return this.clientModel.findByIdAndUpdate({_id : id}, {updateClientDto},
       )
   }
