@@ -1,26 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLogDto } from './dto/create-log.dto';
-import { UpdateLogDto } from './dto/update-log.dto';
+import { Model } from 'mongoose';
+import { Log, LogDocument } from './entities/log.entity';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class LogService {
-  create(createLogDto: CreateLogDto) {
-    return 'This action adds a new log';
+  constructor(@InjectModel(Log.name) private logModel: Model<LogDocument>) {}
+
+  async logCreate(clientId: string): Promise<Log> {
+
+    const logEntry = new this.logModel({CreateLogDto})
+    return logEntry.save()
   }
 
-  findAll() {
-    return `This action returns all log`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} log`;
-  }
-
-  update(id: number, updateLogDto: UpdateLogDto) {
-    return `This action updates a #${id} log`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} log`;
-  }
 }

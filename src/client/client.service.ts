@@ -4,11 +4,15 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Client, clientDocument } from './entities/client.entity';
 import { Model } from 'mongoose';
+import { LogService } from 'src/log/log.service';
 
 @Injectable()
 export class ClientService {
 
-  constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>) {}
+  constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>,
+  private logService: LogService
+  ) {}
+
 
   async checkEmail(email: string): Promise<boolean>{
     const emailExist = await this.clientModel.findOne({ email}).exec();
@@ -21,7 +25,10 @@ export class ClientService {
 
   async create(createClientDto: CreateClientDto) {
     try{
-      const client = new this.clientModel(createClientDto);
+      const client = new this.clientModel(createClientDto)
+      // const savedClient = await client.save();
+      // await this.logService.logCreate('CREATE', client)
+      // return savedClient;
       return client.save()
     }catch(err){
       return err;
