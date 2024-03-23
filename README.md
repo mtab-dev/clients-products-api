@@ -3,7 +3,7 @@
 - Vá à pasta clonada com ```cd clients-products-api```
 - Use ```npm install``` para instalar as bibliotecas do projeto
 - Rode o servidor com ```npm run start:dev```
-- O projeto estará no link: ```localhost:4242```
+- O projeto estará no link: ```https://localhost:4242```
   
 ## Rotas
 - /clients/ (GET): Procurar todos os clientes cadastrados
