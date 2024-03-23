@@ -9,7 +9,21 @@ import { Model } from 'mongoose';
 export class ClientService {
 
   constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>) {}
-  create(createClientDto: CreateClientDto) {
+
+  async findEmail(email: string): Promise<Client>{
+    return this.clientModel.findOne({ email}).exec();
+  }
+
+  async checkEmail(email: string): Promise<boolean>{
+    const emailExist = await this.findEmail(email);
+    if(emailExist){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  async create(createClientDto: CreateClientDto) {
     try{
       const client = new this.clientModel(createClientDto);
       return client.save()

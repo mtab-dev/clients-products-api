@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ConflictException } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -8,7 +8,12 @@ export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
   @Post('register')
-  create(@Body() createClientDto: CreateClientDto) {
+    async create(@Body() createClientDto: CreateClientDto) {
+    const email = createClientDto.email
+    const emailExists = await this.clientService.checkEmail(email);
+    if(emailExists){
+      throw new ConflictException('Email are already exists');
+    }
     return this.clientService.create(createClientDto);
   }
 
