@@ -10,12 +10,8 @@ export class ClientService {
 
   constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>) {}
 
-  async findEmail(email: string): Promise<Client>{
-    return this.clientModel.findOne({ email}).exec();
-  }
-
   async checkEmail(email: string): Promise<boolean>{
-    const emailExist = await this.findEmail(email);
+    const emailExist = await this.clientModel.findOne({ email}).exec();
     if(emailExist){
       return true;
     }else{

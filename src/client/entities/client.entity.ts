@@ -1,11 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { isExistDb } from '@youba/nestjs-dbvalidator';
 import { now, HydratedDocument } from 'mongoose';
 
 export type clientDocument = HydratedDocument<Client>;
 
 @Schema()
-@isExistDb({ table: 'client', column: ''})
 export class Client {
   @Prop()
   name: string;
