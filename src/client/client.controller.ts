@@ -22,9 +22,14 @@ export class ClientController {
     return this.clientService.findAll();
   }
 
-  @Get('list/:id')
-  findOne(@Param('id') id: string) {
-    return this.clientService.findOne(+id);
+  @Get('list/:email')
+  findOne(@Param('email') email: string){
+    return this.clientService.findOne({email});
+  }
+
+  @Get('list/:createdAt')
+  findbyDate(@Param('createdAt') createdAt: Date){
+    return this.clientService.findbyDate({createdAt});
   }
 
   @Patch(':id')

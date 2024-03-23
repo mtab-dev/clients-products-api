@@ -7,4 +7,5 @@ export class CreateClientDto {
     "addressComp": string;
     "city": string;
     "cep": string;
+    "createdAt": Date;
 }

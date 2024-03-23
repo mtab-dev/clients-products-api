@@ -28,12 +28,25 @@ export class ClientService {
     }
   }
 
+  // async logClient(client){
+  //   try{
+  //     const client = this.clientModel(createC);
+  //     return client.save()
+  //   }catch(err){
+  //     return err;
+  //   }
+  // }
+
   findAll() {
     return this.clientModel.find()
   }
 
   findOne(email) {
     return this.clientModel.find(email)
+  }
+
+  findbyDate(createdAt){
+    return this.clientModel.find(createdAt)
   }
 
   update(id: string, updateClientDto: UpdateClientDto) {
