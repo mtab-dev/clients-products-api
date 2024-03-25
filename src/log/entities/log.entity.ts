@@ -8,7 +8,6 @@ export class Log {
 
     @Prop()
     clientId: string;
-<<<<<<< HEAD
 
     @Prop()
     productId: string;
@@ -16,20 +15,6 @@ export class Log {
     @Prop()
     email: string;
 
-    @Prop()
-    createdAt: Date;
-
-    @Prop()
-    overview: string;
-=======
->>>>>>> d538e40829beaf324d247df797a8462521545444
-    
-    @Prop()
-    email: string;
-
-    @Prop()
-    productId: string;
-    
     @Prop()
     productOverview: string;
 
@@ -37,10 +22,5 @@ export class Log {
     createdAt: Date;
 }
 
-<<<<<<< HEAD
 export const LogSchema = SchemaFactory.createForClass(Log);
-=======
-export const logSchema = SchemaFactory.createForClass(Log);
-
->>>>>>> d538e40829beaf324d247df797a8462521545444
 
