@@ -4,17 +4,10 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Client, clientDocument } from './entities/client.entity';
 import { Model } from 'mongoose';
-<<<<<<< HEAD
-=======
-import { LogService } from 'src/log/log.service';
-
->>>>>>> d538e40829beaf324d247df797a8462521545444
 @Injectable()
 export class ClientService {
 
-  constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>,
-  private logService: LogService
-  ) {}
+  constructor(@InjectModel(Client.name) private clientModel: Model<clientDocument>) {}
 
 
   async checkEmail(email: string): Promise<boolean>{
