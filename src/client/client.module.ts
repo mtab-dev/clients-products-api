@@ -4,10 +4,14 @@ import { ClientController } from './client.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ClientSchema } from './entities/client.entity';
 import { Client } from './entities/client.entity';
+import { LogService } from 'src/log/log.service';
+import { LogInterceptor } from 'src/log/log.interceptor';
+import { LogModule } from 'src/log/log.module'
+
 
 @Module({
   imports: [MongooseModule.forFeature([{name: Client.name, schema: ClientSchema}])],
   controllers: [ClientController],
-  providers: [ClientService],
+  providers: [ClientService, LogService, LogInterceptor, LogModule],
 })
 export class ClientModule {}

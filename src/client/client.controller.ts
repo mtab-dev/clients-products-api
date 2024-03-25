@@ -6,13 +6,13 @@ import { LogService } from 'src/log/log.service';
 
 @Controller('clients')
 export class ClientController {
-  constructor(private readonly clientService: ClientService, logService: LogService) {}
+  constructor(private readonly clientService: ClientService) {}
 
   @Post('register')
   @UseInterceptors(LogInterceptor)
   create(@Body() createClientDto: CreateClientDto) {
     try{
-      return this.clientService.create(createClientDto), this.logService.logCreate()
+      return this.clientService.create(createClientDto)
     }catch(error){
       error.message
     }
