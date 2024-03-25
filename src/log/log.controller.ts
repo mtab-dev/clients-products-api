@@ -7,28 +7,19 @@ import { UpdateLogDto } from './dto/update-log.dto';
 export class LogController {
   constructor(private readonly logService: LogService) {}
 
-  @Post()
+  @Post('register')
   create(@Body() createLogDto: CreateLogDto) {
-    return this.logService.create(createLogDto);
+    return this.logService.logCreate(createLogDto);
   }
 
-  @Get()
-  findAll() {
-    return this.logService.findAll();
+  @Get('list')
+  logListAll() {
+    return this.logService.logListAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.logService.findOne(+id);
+  @Get('list/:id')
+  logListOne(@Param('id') id: string){
+    return this.logService.logListOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLogDto: UpdateLogDto) {
-    return this.logService.update(+id, updateLogDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.logService.remove(+id);
-  }
 }

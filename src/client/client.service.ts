@@ -4,7 +4,6 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Client, clientDocument } from './entities/client.entity';
 import { Model } from 'mongoose';
-
 @Injectable()
 export class ClientService {
 

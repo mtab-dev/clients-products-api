@@ -1,15 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseInterceptors } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
-import { UpdateClientDto } from './dto/update-client.dto';
+import { LogInterceptor } from 'src/log/log.interceptor';
+import { LogService } from 'src/log/log.service';
 
 @Controller('clients')
 export class ClientController {
-  constructor(private readonly clientService: ClientService) {}
+  constructor(private readonly clientService: ClientService, logService: LogService) {}
 
   @Post('register')
+  @UseInterceptors(LogInterceptor)
   create(@Body() createClientDto: CreateClientDto) {
-    return this.clientService.create(createClientDto);
+    try{
+      return this.clientService.create(createClientDto), this.logService.logCreate()
+    }catch(error){
+      error.message
+    }
   }
 
   @Get('list')
@@ -19,14 +25,8 @@ export class ClientController {
 
   @Get('list/:id')
   findOne(@Param('id') id: string) {
-    return this.clientService.findOne(+id);
+    return this.clientService.findOne(id);
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientService.update(id, updateClientDto);
-  }
-
   @Delete('remove/:id')
   remove(@Param('id') id: string) {
     return this.clientService.remove(id);
