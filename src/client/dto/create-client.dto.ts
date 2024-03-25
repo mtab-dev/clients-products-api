@@ -1,4 +1,3 @@
-import moment from "moment";
 export class CreateClientDto {
     "name": string;
     "email": string;
@@ -8,4 +7,5 @@ export class CreateClientDto {
     "addressComp": string;
     "city": string;
     "cep": string;
+    "createdAt": Date;
 }
