@@ -7,10 +7,10 @@ import { Log, logDocument } from './entities/log.entity'
 
 @Injectable()
 export class LogService {
-  constructor(@InjectModel(Log.name) private LogModel: Model<logDocument>){}
+  constructor(@InjectModel(Log.name) public LogModel: Model<logDocument>){}
   async logCreate(createLogDto: CreateLogDto): Promise<Log>{
     try{
-      const logEntry = new this.LogModel(CreateLogDto);
+      const logEntry = new this.LogModel(createLogDto);
       return logEntry.save()
     }catch(error){
       return error.message

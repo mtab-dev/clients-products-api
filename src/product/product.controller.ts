@@ -1,14 +1,15 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { CreateLogDto } from 'src/log/dto/create-log.dto';
 
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post('register')
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+  create(@Body() createProductDto: CreateProductDto, createLogDto: CreateLogDto) {
+    return this.productService.productRegister(createProductDto, createLogDto);
   }
 
   @Get('list')

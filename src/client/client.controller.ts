@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, ConflictException} from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { CreateLogDto } from 'src/log/dto/create-log.dto'
@@ -10,9 +10,14 @@ export class ClientController{
   constructor(private readonly clientService: ClientService) {}
   @Post('register')
   // @UseInterceptors(LogInterceptor)
-  clientRegister(@Body() createClientDto: CreateClientDto, createLogDto: CreateLogDto) {
+  async clientRegister(@Body() createClientDto: CreateClientDto, createLogDto: CreateLogDto, email: string) {
     try{
-      this.clientService.clientRegister(createClientDto, createLogDto)
+        const email = createClientDto.email
+        const emailExists = await this.clientService.checkEmail(email);
+        if(emailExists){
+          throw new ConflictException('Email are already exists');
+        }
+        return this.clientService.clientRegister(createClientDto, createLogDto);
     }catch(error){
       error.message
     }
