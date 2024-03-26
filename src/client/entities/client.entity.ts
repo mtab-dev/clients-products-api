@@ -1,7 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now, HydratedDocument } from 'mongoose';
+import { CreateClientDto } from 'src/client/dto/create-client.dto'
 
 export type clientDocument = HydratedDocument<Client>;
+
+
 
 @Schema()
 export class Client {

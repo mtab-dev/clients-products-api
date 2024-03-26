@@ -1,12 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now, HydratedDocument } from 'mongoose';
+import { CreateClientDto } from 'src/client/dto/create-client.dto'
 
 export type logDocument = HydratedDocument<Log>;
+
+const userId = CreateClientDto.name
 
 @Schema()
 export class Log {
 
-    @Prop()
+    @Prop({required: false, default: userId})
     clientId: string;
 
     @Prop()
