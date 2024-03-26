@@ -9,7 +9,6 @@ import { LogModule } from './log/log.module';
   imports: [
     MongooseModule.forRoot("mongodb+srv://mtab-admin:Vq4HSUd4aK7602hO@cluster0.ildcwxd.mongodb.net/?retryWrites=true&w=majority"),
     ClientModule,
-    ProductModule,
-    LogModule],
+    ProductModule,],
 })
 export class AppModule {}
