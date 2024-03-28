@@ -3,7 +3,7 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LogService } from 'src/log/log.service';
-import { Client, clientDocument } from './entities/client.entity';
+import { clientDocument } from './entities/client.entity';
 
 @Injectable()
 export class ClientService {
@@ -14,12 +14,14 @@ export class ClientService {
   ) { }
 
   async checkEmail(email: string) { //check if the email already exists in db
-    if (this.clientModel.findOne({ email }).exec()) {
+    const emailExist = await this.clientModel.findOne({ email }).exec()
+    if (emailExist) {
       return true;
     } else {
       return false;
     }
   }
+
   async clientRegister(createClientDto: CreateClientDto) { //register client
     try {
       await this.logService.logClient(createClientDto); // Log the client registration
@@ -53,4 +55,13 @@ export class ClientService {
       throw new Error(error.message);
     }
   }
-}
+ 
+  // async clientSort(createdAt: Date){
+  //   const data = {
+  //     client: this.clientModel.find(),
+  //     date: await this.clientModel.findOne({createdAt})
+  //   }
+  //   };
+  }
+    
+

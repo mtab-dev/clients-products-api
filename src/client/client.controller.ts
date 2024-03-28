@@ -8,9 +8,8 @@ export class ClientController {
   constructor(private readonly clientService: ClientService) { }
   @Post('register') //registering clients
   async clientRegister(@Body() createClientDto: CreateClientDto) {
-
-    const email = createClientDto.email
-    const emailExists = await this.clientService.checkEmail(email);
+    // const email = createClientDto.email
+    const emailExists: boolean = await this.clientService.checkEmail(createClientDto.email);
     if (emailExists) {
       throw new ConflictException('Email are already exists');
     }
@@ -19,16 +18,22 @@ export class ClientController {
   }
 
   @Get('list') //listing all clients
-  findAll() {
+  clientList() {
     return this.clientService.clientList();
   }
 
   @Get('list/:id') //listing a client by id
-  findOne(@Param('id') id: string) {
+  clientListOne(@Param('id') id: string) {
     return this.clientService.clientListOne(id);
   }
+
+  // @Get('sort')
+  // clientSort(){
+  //   return this.clientService.clientSort();
+  // }
+  
   @Delete('remove/:id') //removing a client by id
-  remove(@Param('id') id: string) {
+  clientDelete(@Param('id') id: string) {
     return this.clientService.clientDelete(id);
   }
 }

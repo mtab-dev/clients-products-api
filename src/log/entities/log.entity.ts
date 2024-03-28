@@ -20,7 +20,7 @@ export class Log {
     @Prop()
     productOverview: string;
 
-    @Prop({ default: now() })
+    @Prop({ required: false, default: now() })
     createdAt: Date;
 }
 
