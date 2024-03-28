@@ -3,6 +3,6 @@ export class CreateLogDto {
     productId: string;
     email: string;
     createdAt: Date;
-    overview: string;
+    productOverview: string;
 
 }

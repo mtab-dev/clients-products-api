@@ -4,8 +4,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { ProductDocument } from './entities/product.entity';
 import { Model } from 'mongoose';
 import { LogService } from 'src/log/log.service';
-import { CreateLogDto } from 'src/log/dto/create-log.dto'
-// import { Log, logDocument } from 'src/log/entities/log.entity';
+
 
 @Injectable()
 export class ProductService {
@@ -14,13 +13,13 @@ export class ProductService {
    public productModel: Model<ProductDocument>,
    public logService: LogService,
    ) {}
-  async productRegister(createProductDto: CreateProductDto, createLogDto: CreateLogDto) {
+  async productRegister(createProductDto: CreateProductDto) {
     try{
-      await this.logService.logCreate(createLogDto)
+      await this.logService.logProduct(createProductDto)
       await new this.productModel(createProductDto).save();
-      return "OK"
+      return "Product registered successfully"
     }catch(error){
-      return error.message
+      return 'Failed product registration'
     }
   }
 

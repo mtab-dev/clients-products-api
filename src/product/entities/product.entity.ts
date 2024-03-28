@@ -10,7 +10,7 @@ export class Product {
     clientId: string;
         
     @Prop()
-    overview: string;
+    productOverview: string;
 
     @Prop({default: now(), required: false})
     createdAt: Date;

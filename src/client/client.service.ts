@@ -3,8 +3,6 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LogService } from 'src/log/log.service';
-import { CreateLogDto } from 'src/log/dto/create-log.dto'
-// import { Log, logDocument } from 'src/log/entities/log.entity';
 import { Client, clientDocument } from './entities/client.entity';
 
 @Injectable()
@@ -27,13 +25,13 @@ export class ClientService {
       return false;
     }
   }
-  async clientRegister(createClientDto: CreateClientDto, createLogDto: CreateLogDto): Promise<string> {
+  async clientRegister(createClientDto: CreateClientDto): Promise<string> {
     try {
-        await this.logService.logCreate(createLogDto); // Log the client registration
+        await this.logService.logClient(createClientDto); // Log the client registration
         await new this.clientModel(createClientDto).save(); // Save the client
-        return 'OK';
+        return 'Client created successfully';
       }catch (error) {
-      return error.message;
+      return 'Client registration failed';
     }
   }
 

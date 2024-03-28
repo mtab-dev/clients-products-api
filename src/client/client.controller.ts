@@ -10,17 +10,15 @@ export class ClientController{
   constructor(private readonly clientService: ClientService) {}
   @Post('register')
   // @UseInterceptors(LogInterceptor)
-  async clientRegister(@Body() createClientDto: CreateClientDto, createLogDto: CreateLogDto, email: string) {
-    try{
+  async clientRegister(@Body() createClientDto: CreateClientDto) {
+  
         const email = createClientDto.email
         const emailExists = await this.clientService.checkEmail(email);
         if(emailExists){
           throw new ConflictException('Email are already exists');
         }
-        return this.clientService.clientRegister(createClientDto, createLogDto);
-    }catch(error){
-      error.message
-    }
+        return this.clientService.clientRegister(createClientDto);
+   
   }
 
   @Get('list')

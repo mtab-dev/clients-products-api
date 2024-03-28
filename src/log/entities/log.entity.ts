@@ -4,12 +4,12 @@ import { CreateClientDto } from 'src/client/dto/create-client.dto'
 
 export type logDocument = HydratedDocument<Log>;
 
-const userId = CreateClientDto.name
+// const userId = this.CreateClientDto.name
 
 @Schema()
 export class Log {
 
-    @Prop({required: false, default: userId})
+    @Prop({required: false})
     clientId: string;
 
     @Prop()
