@@ -8,10 +8,13 @@
 ## Rotas e suas funcionalidades:
 - ```/clients/list (GET)``` : Procura todos os clientes cadastrados
 - ```/clients/list/:id (GET)``` : Procura os clientes cadastrados pelo id
+- ```/clients/list/:email (GET)``` : Procura os clientes cadastrados pelo email
+- ```/clients/list/:createdAt (GET)``` : Procura os clientes cadastrados pela data de cadastro
 - ```/clients/register (POST)``` : Cadastra clientes
   
 - ```/products/list (GET)``` : Procura todos os pedidos cadastrados
-- ```/products/list/:id (GET)``` : Procura os pedidos cadastrados pelo id
+- ```/products/list/:id (GET)``` : Procura o pedido cadastrado pelo id
+- ```/products/list/:createdAt (GET)``` : Procura o pedido  pela data de cadastro
 - ```/products/register (POST)``` : Cadastra pedidos
   
 - ```/log/list (GET)``` : Lista todos os log cadastrados
