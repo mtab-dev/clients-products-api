@@ -5,9 +5,6 @@ export type clientDocument = HydratedDocument<Client>;
 @Schema()
 export class Client {
 
-  @Prop({type:SchemaTypes.ObjectId, ref: 'clients'})
-  _id: Types.ObjectId;
-
   @Prop()
   name: string;
 

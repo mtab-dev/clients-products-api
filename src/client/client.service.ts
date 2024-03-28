@@ -3,7 +3,7 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LogService } from 'src/log/log.service';
-import { clientDocument } from './entities/client.entity';
+import { Client, clientDocument } from './entities/client.entity';
 
 @Injectable()
 export class ClientService {
@@ -48,22 +48,30 @@ export class ClientService {
     }
   } 
 
-  async clientListId(id: any){
+  async clientListId(id: any){ //list a client by Id
     try{
       return this.clientModel.findOne({_id : id}).exec();
     }catch(error){
       return 'Error at finding client'
     }
   }
-  async clientDate(createdAt: Date){
-      return this.clientModel.find({ createdAt })
+  async clientListDate(createdAt: Number){ //list a client by date of creation
+      return this.clientModel.findOne({ createdAt }).exec();
   };
 
   async clientDelete(id: string) { //delete a client by id
     try {
       return await this.clientModel.deleteOne({ _id: id }).exec();
     } catch (error) {
-      throw new Error(error.message);
+      return 'Error deleting the client';
+    }
+  }
+
+  async clientReset(){ //delete all clients in db
+    try{
+      return await this.clientModel.deleteMany({}).exec();
+    }catch(error){
+      return 'Error deleting the clients'
     }
   }
   

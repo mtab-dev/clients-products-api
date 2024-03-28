@@ -31,13 +31,14 @@ export class ClientController {
     return this.clientService.clientListId(id);
   }
 
-  @Get('list/{:createdAt}') //list a client by date of creation
-  clientDate(@Param('createdAt') createdAt: Date){
-    return this.clientService.clientDate(createdAt);
+  @Get('list/:createdAt') //list a client by date of creation
+  clientDate(@Param('createdAt') createdAt: Number){
+    return this.clientService.clientListDate(createdAt);
   }
   
   @Delete('remove/:id') //removing a client by id
   clientDelete(@Param('id') id: string) {
     return this.clientService.clientDelete(id);
   }
+
 }

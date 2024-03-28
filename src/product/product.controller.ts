@@ -6,22 +6,22 @@ import { CreateProductDto } from './dto/create-product.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post('register')
+  @Post('register') //register a product
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.productRegister(createProductDto);
   }
 
-  @Get('list')
+  @Get('list') // list all products
   findAll() {
     return this.productService.productList();
   }
 
-  @Get('list/:id')
+  @Get('list/:id') //list a product by id
   findOne(@Param('id') id: string) {
     return this.productService.productListOne(id);
   }
 
-  @Delete('remove/:id')
+  @Delete('remove/:id') // remove a product by id
   remove(@Param('id') id: string) {
     return this.productService.productDelete(id);
   }

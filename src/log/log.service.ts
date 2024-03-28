@@ -36,11 +36,19 @@ export class LogService {
     }
   }
 
-  logListOne(id: any) { //list a log by the client or product id
+  logListId(id: string) { //list a log by the client or product id
     try {
-      return this.LogModel.findOne({ _id: id });
+      return this.LogModel.findOne({ _id: id }).exec();
     } catch (error) {
-      return error.message
+      return 'Error finding the log'
+    }
+  }
+
+  logListEmail(email: string){ //list a log by the client email
+    try{
+      return this.LogModel.findOne({email}).exec();
+    }catch(error){
+      return 'Error finding the log'
     }
   }
 

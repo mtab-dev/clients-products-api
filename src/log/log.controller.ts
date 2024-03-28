@@ -11,8 +11,13 @@ export class LogController {
   }
 
   @Get('list/:id') // list a log by id
-  logListOne(@Param('id') id: string) {
-    return this.logService.logListOne(id);
+  logListId(@Param('id') id: string) {
+    return this.logService.logListId(id);
+  }
+
+  @Get('list/:email') // list a log by email
+  logListEmail(@Param('email') email: string){
+    return this.logService.logListEmail(email);
   }
 
   @Delete('delete/:id') // delete the log by id
