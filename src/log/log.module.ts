@@ -6,9 +6,9 @@ import { LogSchema } from './entities/log.entity'
 import { Log } from './entities/log.entity'
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: Log.name, schema: LogSchema}])],
+  imports: [MongooseModule.forFeature([{ name: Log.name, schema: LogSchema }])],
   controllers: [LogController],
   providers: [LogService],
   exports: [LogService]
 })
-export class LogModule {}
+export class LogModule { }

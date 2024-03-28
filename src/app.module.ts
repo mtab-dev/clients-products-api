@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-
 import { ClientModule } from './client/client.module';
 import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -12,4 +11,4 @@ import { LogModule } from './log/log.module';
     ProductModule,
     LogModule],
 })
-export class AppModule {}
+export class AppModule { }

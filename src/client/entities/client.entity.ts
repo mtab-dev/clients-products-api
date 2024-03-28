@@ -3,15 +3,12 @@ import { now, HydratedDocument } from 'mongoose';
 import { CreateClientDto } from 'src/client/dto/create-client.dto'
 
 export type clientDocument = HydratedDocument<Client>;
-
-
-
 @Schema()
 export class Client {
   @Prop()
   name: string;
 
-  @Prop({unique: true})
+  @Prop({ unique: true })
   email: string;
 
   @Prop()
@@ -32,7 +29,7 @@ export class Client {
   @Prop()
   cep: string;
 
-  @Prop({default: now()})
+  @Prop({ default: now() })
   createdAt: Date;
 }
 

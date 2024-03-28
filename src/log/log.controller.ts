@@ -1,25 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Delete } from '@nestjs/common';
 import { LogService } from './log.service';
-import { CreateClientDto } from 'src/client/dto/create-client.dto';
-import { CreateProductDto } from 'src/product/dto/create-product.dto';
 
 @Controller('log')
 export class LogController {
-  constructor(private readonly logService: LogService) {}
+  constructor(private readonly logService: LogService) { }
 
-  // @Post('register')
-  // create(@Body() createClientDto: CreateClientDto, createProductDto: CreateProductDto) {
-  //   return this.logService.logCreate(createClientDto, createProductDto);
-  // }
-
-  @Get('list')
+  @Get('list') // list all logs
   logListAll() {
     return this.logService.logListAll();
   }
 
-  @Get('list/:id')
-  logListOne(@Param('id') id: string){
+  @Get('list/:id') // list a log by id
+  logListOne(@Param('id') id: string) {
     return this.logService.logListOne(id);
+  }
+
+  @Delete('delete/:id') // delete the log by id
+  logRemove(@Param('id') id: string) {
+    return this.logService.logRemove(id);
   }
 
 }

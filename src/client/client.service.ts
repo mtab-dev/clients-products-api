@@ -11,31 +11,26 @@ export class ClientService {
     @InjectModel('Client')
     public clientModel: Model<clientDocument>,
     public logService: LogService,
-  ) {}
+  ) { }
 
-  async findEmail(email: string): Promise<Client>{
-    return this.clientModel.findOne({ email}).exec();
-  }
-
-  async checkEmail(email: string): Promise<boolean>{
-    const emailExist = await this.findEmail(email);
-    if(emailExist){
+  async checkEmail(email: string) { //check if the email already exists in db
+    if (this.clientModel.findOne({ email }).exec()) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
-  async clientRegister(createClientDto: CreateClientDto): Promise<string> {
+  async clientRegister(createClientDto: CreateClientDto) { //register client
     try {
-        await this.logService.logClient(createClientDto); // Log the client registration
-        await new this.clientModel(createClientDto).save(); // Save the client
-        return 'Client created successfully';
-      }catch (error) {
+      await this.logService.logClient(createClientDto); // Log the client registration
+      await new this.clientModel(createClientDto).save(); // Save the client
+      return 'Client created successfully';
+    } catch (error) {
       return 'Client registration failed';
     }
   }
 
-  async clientList(): Promise<any[]> {
+  async clientList() { //list all clients
     try {
       return await this.clientModel.find().exec();
     } catch (error) {
@@ -43,15 +38,15 @@ export class ClientService {
     }
   }
 
-  async clientListOne(email: string): Promise<any[]> {
+  async clientListOne(email: string) { //list a client by id
     try {
       return await this.clientModel.find({ email }).exec();
     } catch (error) {
       throw new Error(error.message);
     }
-  }
+  } t
 
-  async clientDelete(id: string): Promise<any> {
+  async clientDelete(id: string) { //delete a client by id
     try {
       return await this.clientModel.deleteOne({ _id: id }).exec();
     } catch (error) {

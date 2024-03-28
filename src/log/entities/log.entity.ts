@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now, HydratedDocument } from 'mongoose';
-import { CreateClientDto } from 'src/client/dto/create-client.dto'
 
 export type logDocument = HydratedDocument<Log>;
 
@@ -9,7 +8,7 @@ export type logDocument = HydratedDocument<Log>;
 @Schema()
 export class Log {
 
-    @Prop({required: false})
+    @Prop({ required: false })
     clientId: string;
 
     @Prop()
@@ -21,7 +20,7 @@ export class Log {
     @Prop()
     productOverview: string;
 
-    @Prop({default: now()})
+    @Prop({ default: now() })
     createdAt: Date;
 }
 

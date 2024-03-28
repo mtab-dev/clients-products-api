@@ -8,38 +8,44 @@ import { CreateProductDto } from 'src/product/dto/create-product.dto';
 
 @Injectable()
 export class LogService {
-  constructor(@InjectModel(Log.name) public LogModel: Model<logDocument>){}
-  async logClient(createClientDto: CreateClientDto): Promise<Log>{
-    try{
+  constructor(@InjectModel(Log.name) public LogModel: Model<logDocument>) { }
+
+  async logClient(createClientDto: CreateClientDto) { //log for clients
+    try {
       const logEntry = new this.LogModel(createClientDto);
       return logEntry.save()
-    }catch(error){
+    } catch (error) {
       return error.message
     }
   }
-  async logProduct(createProductDto: CreateProductDto): Promise<Log>{
-    try{
+
+  async logProduct(createProductDto: CreateProductDto) { //log for products
+    try {
       const logEntry = new this.LogModel(createProductDto);
       return logEntry.save()
-    }catch(error){
+    } catch (error) {
       return error.message
     }
   }
 
-  logListAll(){
-    try{  
+  logListAll() { //list all logs
+    try {
       return this.LogModel.find();
-    }catch(error){
+    } catch (error) {
       return error.message
     }
   }
 
-  logListOne(id: string){
-    try{
-      return this.LogModel.findOne({_id : id});
-    }catch(error){
+  logListOne(id: string) { //list a log by the client or product id
+    try {
+      return this.LogModel.findOne({ _id: id });
+    } catch (error) {
       return error.message
-    } 
+    }
+  }
+
+  logRemove(id: string) { //remove a log by id
+    return this.LogModel.deleteOne({ _id: id }).exec();
   }
 
 }

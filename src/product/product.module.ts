@@ -11,15 +11,15 @@ import { Log, LogSchema } from 'src/log/entities/log.entity';
 
 @Module({
   imports: [MongooseModule.forFeature([
-    {name: Product.name, schema: ProductSchema},
-    {name: Log.name, schema: LogSchema}
+    { name: Product.name, schema: ProductSchema },
+    { name: Log.name, schema: LogSchema }
   ]),
-  LogModule
-],
+    LogModule
+  ],
   controllers: [ProductController],
   providers: [
     ProductService,
     LogService
   ],
 })
-export class ProductModule {}
+export class ProductModule { }
