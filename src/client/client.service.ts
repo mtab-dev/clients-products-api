@@ -40,13 +40,24 @@ export class ClientService {
     }
   }
 
-  async clientListOne(email: string) { //list a client by id
+  async clientListEmail(email: string) { //list a client by email
     try {
       return await this.clientModel.find({ email }).exec();
     } catch (error) {
       throw new Error(error.message);
     }
-  } t
+  } 
+
+  async clientListId(id: any){
+    try{
+      return this.clientModel.findOne({_id : id}).exec();
+    }catch(error){
+      return 'Error at finding client'
+    }
+  }
+  async clientDate(createdAt: Date){
+      return this.clientModel.find({ createdAt })
+  };
 
   async clientDelete(id: string) { //delete a client by id
     try {
@@ -55,13 +66,11 @@ export class ClientService {
       throw new Error(error.message);
     }
   }
- 
-  // async clientSort(createdAt: Date){
-  //   const data = {
-  //     client: this.clientModel.find(),
-  //     date: await this.clientModel.findOne({createdAt})
-  //   }
-  //   };
-  }
+  
+  
+   // async clientSort(createdAt){
+   //   return this.clientModel.find().sort({createdAt: 1}).exec()
+   //   };
+}
     
 
