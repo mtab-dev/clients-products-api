@@ -15,7 +15,7 @@ export class ProductService {
   ) { }
   async productRegister(createProductDto: CreateProductDto) { // register a product
     try {
-      await this.logService.logProduct(createProductDto)
+      await this.logService.logProduct(createProductDto) //log the product
       await new this.productModel(createProductDto).save();
       return "Product registered successfully"
     } catch (error) {
