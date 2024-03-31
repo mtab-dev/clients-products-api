@@ -2,6 +2,7 @@
 - Entre no seu terminal e clone os arquvios com ```git clone https://github.com/mtab-dev/clients-products-api.git```
 - Vá à pasta clonada com ```cd clients-products-api```
 - Use ```npm install``` para instalar as bibliotecas do projeto
+- Em ```app.module.ts```, mude o valor da variável DB_URL para o link de seu banco de dados
 - Rode o servidor com ```npm run start:dev```
 - O projeto estará no link: ```https://localhost:4242```
   

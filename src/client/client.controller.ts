@@ -31,12 +31,7 @@ export class ClientController {
     return this.clientService.clientListId(id);
   }
 
-  @Get('date/:createdAt') //list a client by date of creation
-  clientDate(@Param('createdAt') createdAt: any){
-    return this.clientService.clientListDate(createdAt);
-  }
-
-  @Get('dateSort')
+  @Get('dateSort') //ordenar os clientes por data de cadastro
   clientSort(){
     return this.clientService.clientSort();
   }

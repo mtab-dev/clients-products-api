@@ -4,9 +4,11 @@ import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LogModule } from './log/log.module';
 
+const DB_URL = "seu banco de dados";
+
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://mtab-admin:Vq4HSUd4aK7602hO@cluster0.ildcwxd.mongodb.net/?retryWrites=true&w=majority"),
+    MongooseModule.forRoot(DB_URL),
     ClientModule,
     ProductModule,
     LogModule],

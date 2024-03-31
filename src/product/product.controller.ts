@@ -21,12 +21,12 @@ export class ProductController {
     return this.productService.productListOne(id);
   }
 
-  @Get('dateSort')
+  @Get('dateSort') //ordernar os pedidos por data de cadastro
   productSort(){
-    return this.productService.productSort();
+    return this.productService.productSort();   
   }
 
-  @Delete('remove/:id') // remove a product by id
+  @Delete('delete/:id') // remove a product by id
   remove(@Param('id') id: string) {
     return this.productService.productDelete(id);
   }
