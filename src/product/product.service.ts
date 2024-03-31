@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
-import { ProductDocument } from './entities/product.entity';
+import { Product, ProductDocument } from './entities/product.entity';
 import { Model } from 'mongoose';
 import { LogService } from 'src/log/log.service';
 
@@ -38,6 +38,10 @@ export class ProductService {
       return error.message
     }
   }
+
+  async productSort(): Promise<Product[]>{
+    return this.productModel.find().sort({createdAt: -1}).exec()
+    };
 
   productDelete(id: string) { // remove a product by Id
     return this.productModel.deleteOne({ _id: id }).exec()

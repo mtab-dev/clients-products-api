@@ -21,6 +21,11 @@ export class ProductController {
     return this.productService.productListOne(id);
   }
 
+  @Get('dateSort')
+  productSort(){
+    return this.productService.productSort();
+  }
+
   @Delete('remove/:id') // remove a product by id
   remove(@Param('id') id: string) {
     return this.productService.productDelete(id);

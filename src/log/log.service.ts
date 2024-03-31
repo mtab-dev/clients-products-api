@@ -54,6 +54,7 @@ export class LogService {
 
   logRemove(id: string) { //remove a log by id
     return this.LogModel.deleteOne({ _id: id }).exec();
+    console.log("Log removed")
   }
 
 }

@@ -10,12 +10,12 @@ export class LogController {
     return this.logService.logListAll();
   }
 
-  @Get('list/:id') // list a log by id
+  @Get('id/:id') // list a log by id
   logListId(@Param('id') id: string) {
     return this.logService.logListId(id);
   }
 
-  @Get('list/:email') // list a log by email
+  @Get('email/:email') // list a log by email
   logListEmail(@Param('email') email: string){
     return this.logService.logListEmail(email);
   }

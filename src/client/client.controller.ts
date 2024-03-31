@@ -21,22 +21,28 @@ export class ClientController {
     return this.clientService.clientList();
   }
 
-  @Get('list/:email') //list a client by email
+  @Get('listEmail/:email') //list a client by email
   clientListOne(@Param('email') email: string) {
     return this.clientService.clientListEmail(email);
   }
 
-  @Get('list/:id') //list a client by Id
+  @Get('listId/:id') //list a client by Id
   clientListId(@Param('id') id: string){
     return this.clientService.clientListId(id);
   }
 
-  @Get('list/:createdAt') //list a client by date of creation
-  clientDate(@Param('createdAt') createdAt: Number){
+  @Get('date/:createdAt') //list a client by date of creation
+  clientDate(@Param('createdAt') createdAt: any){
     return this.clientService.clientListDate(createdAt);
   }
+
+  @Get('dateSort')
+  clientSort(){
+    return this.clientService.clientSort();
+  }
+
   
-  @Delete('remove/:id') //removing a client by id
+  @Delete('delete/:id') //removing a client by id
   clientDelete(@Param('id') id: string) {
     return this.clientService.clientDelete(id);
   }

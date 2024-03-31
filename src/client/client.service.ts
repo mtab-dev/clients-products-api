@@ -48,14 +48,14 @@ export class ClientService {
     }
   } 
 
-  async clientListId(id: any){ //list a client by Id
+  async clientListId(id: string){ //list a client by Id
     try{
-      return this.clientModel.findOne({_id : id}).exec();
+      return this.clientModel.find({_id : id}).exec();
     }catch(error){
       return 'Error at finding client'
     }
   }
-  async clientListDate(createdAt: Number){ //list a client by date of creation
+  async clientListDate(createdAt: any){ //list a client by date of creation
       return this.clientModel.findOne({ createdAt }).exec();
   };
 
@@ -66,6 +66,14 @@ export class ClientService {
       return 'Error deleting the client';
     }
   }
+  
+  async clientSort(): Promise<Client[]>{
+    try{
+      return this.clientModel.find().sort({createdAt: -1}).exec()
+    }catch(error){
+      return error;
+    }
+     };
 
   async clientReset(){ //delete all clients in db
     try{
@@ -74,11 +82,6 @@ export class ClientService {
       return 'Error deleting the clients'
     }
   }
-  
-  
-   // async clientSort(createdAt){
-   //   return this.clientModel.find().sort({createdAt: 1}).exec()
-   //   };
 }
     
 
