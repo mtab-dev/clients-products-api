@@ -7,17 +7,21 @@
   
 ## Rotas e suas funcionalidades:
 - ```/clients/list (GET)``` : Procura todos os clientes cadastrados
-- ```/clients/list/:id (GET)``` : Procura os clientes cadastrados pelo id
-- ```/clients/list/:email (GET)``` : Procura os clientes cadastrados pelo email
-- ```/clients/list/:createdAt (GET)``` : Procura os clientes cadastrados pela data de cadastro
+- ```/clients/listId/:id (GET)``` : Procura os clientes cadastrados pelo id
+- ```/clients/listEmail/:email (GET)``` : Procura os clientes cadastrados pelo email
+- ```/clients/dateSort (GET)``` : Procura os clientes cadastrados pela data de cadastro
 - ```/clients/register (POST)``` : Cadastra clientes
+- ```/clients/delete/:id (DELETE)``` : Remove algum cliente pelo id
   
 - ```/products/list (GET)``` : Procura todos os pedidos cadastrados
 - ```/products/list/:id (GET)``` : Procura o pedido cadastrado pelo id
-- ```/products/list/:createdAt (GET)``` : Procura o pedido  pela data de cadastro
+- ```/products/:dateSort (GET)``` : Ordena os pedidos pela data de cadastro
 - ```/products/register (POST)``` : Cadastra pedidos
+- ```/products/delete/:id (DELETE)``` : Remove um produto pelo Id
   
 - ```/log/list (GET)``` : Lista todos os log cadastrados
-- ```/log/list/:id``` : lista os logs pelo id cadastro no banco de dados
+- ```/log/id/:id (GET)``` : Lista os logs pelo id cadastrado no banco de dados
+- ```/log/email/:email (GET)``` : Lista os logs pelo email cadastrado
+- ```/log/delete/:id (DELETE)``` : Deletar algum log pelo id
 
 Este projeto está sobre a [Licensa MIT](./LICENSE)
